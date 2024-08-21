@@ -71,3 +71,4 @@ The application should now be running at `http://localhost:3000`.
 - **Task Management**: After logging in, users can create, view, edit, and delete tasks.
 
 ## Demo
+https://github.com/user-attachments/assets/2b22190c-6fbe-43d5-8c84-e2fcade21f98
