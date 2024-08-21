@@ -10,7 +10,7 @@ const http = axios.create({
 const isAuth = async () => {
     try {
         const res = await http.get(`/verify`, {
-            headers: { jwtToken: localStorage.token },
+            headers: { jwt_token: localStorage.token },
         });
 
         return res.data; // Return the parsed response data

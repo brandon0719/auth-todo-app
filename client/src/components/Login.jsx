@@ -15,22 +15,18 @@ const Login = ({ setAuth }) => {
     const onSubmitForm = async (e) => {
         e.preventDefault();
         try {
-            try {
-                const parseRes = await jwtService.login(email, password);
-                if (parseRes.jwtToken) {
-                    localStorage.setItem("token", parseRes.jwtToken);
-                    setAuth(true);
-                    toast.success("Logged in successfully");
-                } else {
-                    setAuth(false);
-                    toast.error(parseRes);
-                }
-            } catch (error) {
-                console.error(error.message);
-                toast.error("Password or Email is incorrect");
+            const parseRes = await jwtService.login(email, password);
+            if (parseRes.token) {
+                localStorage.setItem("token", parseRes.token);
+                setAuth(true);
+                toast.success("Logged in successfully");
+            } else {
+                setAuth(false);
+                toast.error(parseRes);
             }
         } catch (error) {
             console.error(error.message);
+            toast.error("Password or Email is incorrect");
         }
     };
 

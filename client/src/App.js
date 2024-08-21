@@ -12,15 +12,11 @@ import "react-toastify/dist/ReactToastify.css";
 // Components
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/dashboard/Dashboard";
 import jwtService from "./services/jwtService";
+import Landing from "./components/Landing";
 
 function App() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const setAuth = (boolean) => {
-        setIsAuthenticated(boolean);
-    };
-
     const checkAuthenticated = async () => {
         try {
             const authStatus = await jwtService.isAuth();
@@ -34,12 +30,27 @@ function App() {
         checkAuthenticated();
     }, []);
 
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const setAuth = (boolean) => {
+        setIsAuthenticated(boolean);
+    };
+    
     return (
         <>
             <ToastContainer />
             <Router>
                 <div className="container">
                     <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                !isAuthenticated ? (
+                                    <Landing />
+                                ) : (
+                                    <Navigate to="/dashboard" />
+                                )
+                            }
+                        />
                         <Route
                             path="/login"
                             element={

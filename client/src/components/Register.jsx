@@ -17,8 +17,8 @@ const Register = ({ setAuth }) => {
         e.preventDefault();
         try {
             const res = await jwtService.register(email, password, name);
-            if (res.jwtToken) {
-                localStorage.setItem("token", res.jwtToken);
+            if (res.token) {
+                localStorage.setItem("token", res.token);
                 setAuth(true);
                 toast.success("Registered successfully");
             } else {
